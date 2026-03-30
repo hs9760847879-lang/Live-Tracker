@@ -5,10 +5,10 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Creation Elite | Team Performance Dashboard</title>
+    <title>Creation Team Performance Dashboard</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
         rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -22,468 +22,369 @@
             theme: {
                 extend: {
                     colors: {
-                        "surface-bright": "#353945",
-                        "secondary-container": "#3826cd",
-                        "secondary": "#c4c0ff",
-                        "on-tertiary-container": "#00373f",
-                        "secondary-fixed-dim": "#c4c0ff",
-                        "on-surface": "#dfe2f2",
-                        "background": "#0f131e",
-                        "on-primary-container": "#611600",
-                        "error": "#ffb4ab",
-                        "on-tertiary-fixed": "#001f24",
-                        "secondary-fixed": "#e3dfff",
-                        "primary": "#ffb59f",
-                        "primary-fixed-dim": "#ffb59f",
-                        "on-tertiary-fixed-variant": "#004f58",
-                        "surface-container-low": "#171b27",
                         "tertiary-fixed-dim": "#58d7eb",
-                        "outline": "#a98a81",
-                        "surface-container-highest": "#313441",
-                        "primary-container": "#ff6a3d",
-                        "on-error-container": "#ffdad6",
-                        "tertiary": "#58d7eb",
-                        "surface-variant": "#313441",
                         "on-primary-fixed": "#3b0a00",
-                        "on-error": "#690005",
-                        "on-primary-fixed-variant": "#862200",
-                        "on-surface-variant": "#e1bfb6",
-                        "inverse-on-surface": "#2c303c",
-                        "on-secondary": "#2000a4",
-                        "tertiary-fixed": "#9af0ff",
-                        "surface-container": "#1b1f2b",
-                        "on-background": "#dfe2f2",
-                        "inverse-primary": "#ae3104",
-                        "primary-fixed": "#ffdbd1",
-                        "tertiary-container": "#00a9bc",
                         "surface-container-lowest": "#0a0e19",
                         "surface": "#0f131e",
-                        "on-primary": "#5f1500",
-                        "inverse-surface": "#dfe2f2",
-                        "surface-dim": "#0f131e",
-                        "outline-variant": "#59413a",
-                        "on-tertiary": "#00363d",
-                        "surface-tint": "#ffb59f",
-                        "on-secondary-container": "#b4b0ff",
-                        "error-container": "#93000a",
+                        "on-tertiary-container": "#00373f",
+                        "secondary-fixed-dim": "#c4c0ff",
                         "surface-container-high": "#262a36",
+                        "inverse-primary": "#ae3104",
+                        "secondary-fixed": "#e3dfff",
+                        "on-surface-variant": "#e1bfb6",
+                        "tertiary-fixed": "#9af0ff",
+                        "surface-bright": "#353945",
+                        "surface-container-highest": "#313441",
+                        "surface-container-low": "#171b27",
+                        "on-surface": "#dfe2f2",
+                        "surface-dim": "#0f131e",
+                        "surface-container": "#1b1f2b",
+                        "primary": "#ffb59f",
+                        "secondary-container": "#3826cd",
+                        "on-tertiary-fixed": "#001f24",
+                        "on-secondary-fixed": "#100069",
+                        "surface-tint": "#ffb59f",
+                        "on-background": "#dfe2f2",
+                        "outline-variant": "#59413a",
+                        "primary-fixed-dim": "#ffb59f",
+                        "secondary": "#c4c0ff",
+                        "primary-fixed": "#ffdbd1",
+                        "on-primary-container": "#611600",
+                        "outline": "#a98a81",
+                        "on-secondary": "#2000a4",
+                        "tertiary": "#58d7eb",
+                        "inverse-on-surface": "#2c303c",
+                        "background": "#0f131e",
+                        "on-secondary-container": "#b4b0ff",
+                        "on-tertiary-fixed-variant": "#004f58",
+                        "inverse-surface": "#dfe2f2",
+                        "on-tertiary": "#00363d",
                         "on-secondary-fixed-variant": "#3622ca",
-                        "on-secondary-fixed": "#100069"
+                        "on-primary": "#5f1500",
+                        "on-error-container": "#ffdad6",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#00a9bc",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#862200",
+                        "primary-container": "#ff6a3d",
+                        "surface-variant": "#313441"
                     },
                     fontFamily: {
                         "headline": ["Plus Jakarta Sans"],
                         "body": ["Inter"],
                         "label": ["Inter"]
                     },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px" },
                 },
             },
         }
     </script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.5s ease;
-        }
-
-        .font-headline {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at 0% 0%, #0f131e 0%, #0a0e19 100%);
+            color: #dfe2f2;
+            -webkit-font-smoothing: antialiased;
         }
 
         .glass-card {
             background: rgba(49, 52, 65, 0.4);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            border-color: rgba(255, 181, 159, 0.3);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 181, 159, 0.2);
         }
 
-        .dark .bg-vignette {
-            background: radial-gradient(circle at center, #0f131e 0%, #0a0e19 100%);
+        .glow-primary:hover {
+            box-shadow: 0 0 30px rgba(255, 106, 61, 0.2);
         }
 
-        .light .bg-vignette {
-            background: radial-gradient(circle at center, #f8fafc 0%, #e2e8f0 100%);
+        .glow-secondary:hover {
+            box-shadow: 0 0 30px rgba(56, 38, 205, 0.2);
         }
 
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        .premium-text-gradient {
+            background: linear-gradient(135deg, #ffb59f 0%, #ff6a3d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        .metric-glow {
-            filter: drop-shadow(0 0 8px rgba(255, 106, 61, 0.4));
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
         }
     </style>
 </head>
 
-<body class="bg-surface text-on-surface bg-vignette min-h-screen">
-    <!-- Top Navigation Bar (Shared Component: TopAppBar) -->
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
+    <!-- TopAppBar -->
     <header
-        class="fixed top-0 w-full z-50 bg-slate-900/40 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-8 h-20 shadow-2xl shadow-orange-900/20">
-        <div class="flex items-center gap-8">
-            <div
-                class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-400">
-                Creation Elite</div>
-            <nav class="hidden md:flex gap-6 font-plus-jakarta-sans text-sm font-medium tracking-tight">
-                <a class="text-orange-400 border-b-2 border-orange-500 pb-1" href="#">Dashboard</a>
-                <a class="text-slate-400 hover:text-slate-200 transition-colors" href="#">Analytics</a>
-                <a class="text-slate-400 hover:text-slate-200 transition-colors" href="#">Team</a>
-                <a class="text-slate-400 hover:text-slate-200 transition-colors" href="#">Settings</a>
-            </nav>
-        </div>
-        <div class="flex items-center gap-4">
-            <button class="p-2 rounded-lg hover:bg-white/5 transition-all active:scale-95 text-slate-400"
-                id="themeToggle">
-                <span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
-            </button>
-            <button class="p-2 rounded-lg hover:bg-white/5 transition-all active:scale-95 text-slate-400">
-                <span class="material-symbols-outlined" data-icon="mail">mail</span>
-            </button>
-            <button
-                class="bg-primary-container text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:shadow-orange-500/20 active:scale-95 transition-all">
-                <span class="material-symbols-outlined text-sm" data-icon="share">share</span>
-                Share analytics on mail
-            </button>
-            <div class="w-10 h-10 rounded-full bg-surface-container-highest border border-white/10 overflow-hidden">
-                <img alt="User profile avatar" class="w-full h-full object-cover"
-                    data-alt="professional male avatar with stylish hair and glasses in a minimalist vector style"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD33NmvNRZau_g4inJ4gRXWxDhhkz5iRBZZdSI5T9k0wC6WQWc5ZojaoheNqnamLyUVla352jisqXsiTamdEw3ZMiYF7ta1mVWNbgIWwPjGreHIxS3rCwNTOeIvi_0BGoX2R1SsmteJLcO9n1oaEXSfbZJdFBTLi_O5rRFYzdekhbUUBF5heCAl9m4QStTJld-DBkndsFTWGq5u00R3DgZhXdInNjGUVpUtA9MTkmqtkEEAs5luqb-cX_ZULjw1sIOWaJ4uMor5AGg" />
+        class="fixed top-0 w-full z-50 border-b border-white/10 bg-[#0f131e]/80 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+        <div class="flex justify-between items-center px-6 py-4 w-full max-w-screen-2xl mx-auto">
+            <div class="flex items-center gap-3">
+                <img alt="Amber Logo" class="w-10 h-10 rounded-xl"
+                    data-alt="Abstract orange and red fluid gradient logo symbol with sharp geometric edges on a dark transparent background"
+                    src="https://lh3.googleusercontent.com/aida/ADBb0ujKWtTvLpJrOodF5SWGfu9bY0fMHzIvGrhbCo_oLaGU2RSAJPB8knG3LfHmxMniwZdqyU0A1Dwyp0c20SYZbzYe9Q-gk1bn2X0OdIMdn5HoZAHlCpTqUjH9FYOa3d-_sDeM-u7KQLxFUCT2Mb_ZUMewuFUouVMKHP79CAcWRGHAUIy0Gnx9faXSt9BblQzB6vV5agJmmiMSk_63jA7YQ-Tnsp3O68FqBKIXHQxpQmmYgunu5wHNNJmn1XrEWIeu1PGyZb0wfNMrqg" />
+            </div>
+            <h1
+                class="font-headline font-bold tracking-tight text-[#ffb59f] text-sm md:text-lg lg:text-xl text-center flex-grow px-4">
+                Creation Team Performance Dashboard
+            </h1>
+            <div class="flex items-center gap-2 md:gap-4">
+                <button
+                    class="relative w-14 h-8 flex items-center bg-white/5 border border-white/10 rounded-full p-1 cursor-pointer transition-all duration-500 hover:bg-white/10 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] group"
+                    id="theme-toggle">
+                    <div class="w-6 h-6 bg-gradient-to-br from-primary to-primary-container rounded-full shadow-[0_0_15px_rgba(255,106,61,0.4)] flex items-center justify-center transition-all duration-500 transform translate-x-0"
+                        id="toggle-knob">
+                        <span
+                            class="material-symbols-outlined text-[16px] text-on-primary-fixed font-bold transition-all duration-300"
+                            id="toggle-icon">dark_mode</span>
+                    </div>
+                    <div
+                        class="absolute right-2 flex items-center justify-center opacity-40 group-hover:opacity-100 transition-opacity">
+                        <span class="material-symbols-outlined text-[14px] text-on-surface">light_mode</span>
+                    </div>
+                </button><button
+                    class="text-[#c4c0ff]/60 hover:bg-white/5 hover:text-[#ffb59f] transition-all duration-300 p-2 rounded-xl active:scale-95">
+                    <span class="material-symbols-outlined">settings</span>
+                </button>
+                <div
+                    class="w-10 h-10 rounded-full border-2 border-primary/20 overflow-hidden cursor-pointer hover:border-primary transition-colors">
+                    <img alt="Team Lead Profile"
+                        data-alt="Professional portrait of a team leader with a confident expression in a high-tech modern office setting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuANT3dHS5G0g1RcS1TsJwf1PIP58O8sXDDNVFjgUy56OymLs14o4j3LQWeE3HzwUvCb3Xa63Fk4FpdllhSLBCL1-l2iK-C-r7fPHUXetIhHrsAHWQ5LAh2vxL-sAaraobR4x4yEJZlyQBEPfMlANpyT4FfJs_1d0RrZGvlEAPXRHihd0poD3NgzBMAtu928UAG93ms49uksE4AMSjmi5lvG2EXICgjyBZnU9b7ElQBsadDvnLPLRcqvSeoR_kWtt2lUxPDXBMzB_BE" />
+                </div>
             </div>
         </div>
     </header>
-    <!-- Sidebar (Shared Component: SideNavBar) -->
-    <aside
-        class="fixed left-0 top-0 h-full w-64 z-40 bg-slate-950/60 backdrop-blur-2xl border-r border-white/5 shadow-[20px_0_50px_rgba(0,0,0,0.5)] flex flex-col pt-24 pb-8 hidden lg:flex">
-        <div class="px-6 mb-8">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center font-bold text-white">C
-                </div>
-                <div>
-                    <div class="font-headline text-xs font-bold uppercase tracking-widest text-orange-500">Performance
+    <main class="pt-28 pb-32 px-4 max-w-screen-xl mx-auto space-y-10">
+        <!-- Hero Section: Total Commission KPI -->
+        <section class="relative group">
+            <div
+                class="glass-card rounded-xl p-8 flex flex-col md:flex-row justify-between items-center bg-gradient-to-br from-surface-container-high/60 to-surface-container-low/40 border-primary/20 shadow-[0_30px_60px_-15px_rgba(255,106,61,0.15)] glow-primary">
+                <div class="space-y-2 text-center md:text-left">
+                    <h3 class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant/70">Total
+                        Commission</h3>
+                    <div class="flex items-baseline gap-4 justify-center md:justify-start">
+                        <span
+                            class="font-headline text-5xl md:text-7xl font-extrabold premium-text-gradient tracking-tighter">
+                            $142,850
+                        </span>
+                        <div
+                            class="flex items-center text-tertiary font-bold text-lg bg-tertiary/10 px-3 py-1 rounded-full border border-tertiary/20">
+                            <span class="material-symbols-outlined text-sm">trending_up</span>
+                            <span class="ml-1">+12%</span>
+                        </div>
                     </div>
-                    <div class="text-[10px] text-slate-500 font-medium">Real-time Hub</div>
+                    <p class="text-on-surface-variant/50 text-sm">Monthly performance growth from active creators</p>
+                </div>
+                <div class="w-full md:w-64 h-24 mt-8 md:mt-0 flex items-end justify-between gap-1">
+                    <!-- Mini Line Chart Visualization -->
+                    <div class="flex-1 bg-primary/20 h-[30%] rounded-t-sm"></div>
+                    <div class="flex-1 bg-primary/40 h-[50%] rounded-t-sm"></div>
+                    <div class="flex-1 bg-primary/30 h-[45%] rounded-t-sm"></div>
+                    <div class="flex-1 bg-primary/60 h-[70%] rounded-t-sm"></div>
+                    <div class="flex-1 bg-primary/50 h-[60%] rounded-t-sm"></div>
+                    <div class="flex-1 bg-primary/80 h-[90%] rounded-t-sm"></div>
+                    <div class="flex-1 bg-primary h-[100%] rounded-t-sm shadow-[0_0_15px_rgba(255,181,159,0.5)]"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Secondary KPI Row -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card rounded-xl p-6 flex items-center justify-between glow-secondary">
+                <div class="space-y-1">
+                    <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant/60">Commission
+                        Updated</p>
+                    <p id="stat-commission-updated" class="font-headline text-3xl font-bold text-secondary">2,841</p>
+                </div>
+                <div
+                    class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/20">
+                    <span class="material-symbols-outlined" data-weight="fill">update</span>
+                </div>
+            </div>
+            <div class="glass-card rounded-xl p-6 flex items-center justify-between glow-primary">
+                <div class="space-y-1">
+                    <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant/60">Commission
+                        Created</p>
+                    <p id="stat-commission-created" class="font-headline text-3xl font-bold text-primary">1,154</p>
+                </div>
+                <div
+                    class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+                    <span class="material-symbols-outlined" data-weight="fill">add_circle</span>
+                </div>
+            </div>
+            <div
+                class="glass-card rounded-xl p-6 flex items-center justify-between border-error/20 hover:border-error/40 shadow-[0_0_20px_rgba(255,180,171,0.05)]">
+                <div class="space-y-1">
+                    <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant/60">QC Errors</p>
+                    <p id="stat-qc-errors" class="font-headline text-3xl font-bold text-error">12</p>
+                </div>
+                <div
+                    class="w-12 h-12 rounded-2xl bg-error/10 flex items-center justify-center text-error border border-error/20">
+                    <span class="material-symbols-outlined" data-weight="fill">warning</span>
+                </div>
+            </div>
+        </section>
+        <!-- Grouped Metrics -->
+        <div class="space-y-12">
+            <!-- Communication -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <h2 class="font-headline text-xl font-bold text-on-surface">Communication</h2>
+                    <div class="h-[1px] flex-grow bg-white/10"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass-card rounded-xl p-6 group">
+                        <span class="material-symbols-outlined text-tertiary mb-4 block text-3xl">mail</span>
+                        <p id="stat-mails" class="font-headline text-2xl font-bold">482</p>
+                        <p class="text-on-surface-variant/60 text-sm">Mails Assigned</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Properties -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <h2 class="font-headline text-xl font-bold text-on-surface">Properties</h2>
+                    <div class="h-[1px] flex-grow bg-white/10"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-xl p-6 border-l-4 border-l-primary/40">
+                        <span class="material-symbols-outlined text-primary mb-4 block text-3xl">domain</span>
+                        <p id="stat-properties" class="font-headline text-2xl font-bold">15,204</p>
+                        <p class="text-on-surface-variant/60 text-sm">Properties Created</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 border-l-4 border-l-secondary/40">
+                        <span class="material-symbols-outlined text-secondary mb-4 block text-3xl">chair</span>
+                        <p id="stat-staging" class="font-headline text-2xl font-bold">894</p>
+                        <p class="text-on-surface-variant/60 text-sm">Staging Properties</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Content -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <h2 class="font-headline text-xl font-bold text-on-surface">Content</h2>
+                    <div class="h-[1px] flex-grow bg-white/10"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-xl p-6">
+                        <span
+                            class="material-symbols-outlined text-on-tertiary-container mb-4 block text-3xl">quiz</span>
+                        <p id="stat-faqs" class="font-headline text-2xl font-bold">2,440</p>
+                        <p class="text-on-surface-variant/60 text-sm">FAQs Updated</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-6">
+                        <span
+                            class="material-symbols-outlined text-primary-container mb-4 block text-3xl">video_library</span>
+                        <p id="stat-videos" class="font-headline text-2xl font-bold">152</p>
+                        <p class="text-on-surface-variant/60 text-sm">Videos Created</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary/10 rounded-full blur-3xl"></div>
+                        <span class="material-symbols-outlined text-tertiary mb-4 block text-3xl">api</span>
+                        <p id="stat-api" class="font-headline text-2xl font-bold">9,812</p>
+                        <p class="text-on-surface-variant/60 text-sm">API Enabled Props</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <nav class="flex-1">
-            <div
-                class="flex items-center gap-4 bg-gradient-to-r from-orange-600/20 to-transparent text-orange-400 border-l-4 border-orange-500 px-6 py-4 transition-all duration-500 ease-out cursor-pointer">
-                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-                <span class="font-headline text-xs uppercase tracking-widest">Dashboard</span>
-            </div>
-            <div
-                class="flex items-center gap-4 text-slate-500 px-6 py-4 hover:text-slate-300 hover:backdrop-brightness-125 transition-all duration-500 ease-out cursor-pointer">
-                <span class="material-symbols-outlined" data-icon="insights">insights</span>
-                <span class="font-headline text-xs uppercase tracking-widest">Analytics</span>
-            </div>
-            <div
-                class="flex items-center gap-4 text-slate-500 px-6 py-4 hover:text-slate-300 hover:backdrop-brightness-125 transition-all duration-500 ease-out cursor-pointer">
-                <span class="material-symbols-outlined" data-icon="settings">settings</span>
-                <span class="font-headline text-xs uppercase tracking-widest">Settings</span>
-            </div>
-        </nav>
-        <div class="px-6 mt-auto">
+        <!-- CTA Section -->
+        <div class="flex justify-center pt-8 pb-12">
             <button
-                class="w-full py-3 bg-white/5 rounded-xl border border-white/10 text-slate-300 text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all active:scale-95 mb-4">
-                Share Report
+                class="group relative px-10 py-4 bg-gradient-to-r from-primary-container to-secondary-container rounded-full font-headline font-bold text-white shadow-[0_10px_40px_rgba(255,106,61,0.4)] transition-all hover:scale-105 hover:shadow-[0_15px_60px_rgba(56,38,205,0.5)] active:scale-95 duration-200 overflow-hidden">
+                <span class="relative z-10 flex items-center gap-2">
+                    <span class="material-symbols-outlined">add</span>
+                    Add More Metrics
+                </span>
+                <div
+                    class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                </div>
             </button>
-            <div class="flex flex-col gap-2">
-                <div class="flex items-center gap-4 text-slate-500 px-2 py-2 hover:text-slate-300 cursor-pointer">
-                    <span class="material-symbols-outlined text-sm" data-icon="notifications">notifications</span>
-                    <span class="text-[10px] uppercase tracking-widest">Notifications</span>
-                </div>
-                <div class="flex items-center gap-4 text-slate-500 px-2 py-2 hover:text-slate-300 cursor-pointer">
-                    <span class="material-symbols-outlined text-sm" data-icon="help_center">help_center</span>
-                    <span class="text-[10px] uppercase tracking-widest">Support</span>
-                </div>
-            </div>
-        </div>
-    </aside>
-    <!-- Right Drawer (Shared Component: NavigationDrawer) -->
-    <aside
-        class="fixed right-0 top-0 h-full w-80 z-40 bg-slate-900/80 backdrop-blur-md border-l border-white/10 shadow-[-10px_0_30px_rgba(0,0,0,0.3)] flex flex-col pt-24 px-6 hidden xl:flex">
-        <div class="mb-8">
-            <h2 class="font-headline text-orange-400 font-bold text-lg">Alerts &amp; Status</h2>
-            <p class="text-slate-500 text-sm">Live Feed</p>
-        </div>
-        <div class="flex gap-4 mb-6 border-b border-white/5 pb-4">
-            <div class="flex-1 text-center">
-                <span class="block text-orange-400 font-bold text-sm">Critical</span>
-                <span class="material-symbols-outlined text-orange-400" data-icon="warning">warning</span>
-            </div>
-            <div class="flex-1 text-center">
-                <span class="block text-slate-500 text-sm">Activity</span>
-                <span class="material-symbols-outlined text-slate-500" data-icon="history">history</span>
-            </div>
-        </div>
-        <div class="space-y-4 overflow-y-auto" id="alert-list">
-            <!-- Dynamic alerts go here -->
-            <div class="glass-card p-4 rounded-xl border-l-4 border-error/50">
-                <div class="flex justify-between items-start mb-1">
-                    <span class="text-error font-bold text-xs uppercase">QC Error Detected</span>
-                    <span class="text-[10px] text-slate-500">2m ago</span>
-                </div>
-                <p class="text-xs text-on-surface-variant leading-relaxed">System found a conflict in Property ID #8841.
-                    Manual review required.</p>
-            </div>
-            <div class="glass-card p-4 rounded-xl border-l-4 border-primary/50">
-                <div class="flex justify-between items-start mb-1">
-                    <span class="text-primary font-bold text-xs uppercase">Task Pending</span>
-                    <span class="text-[10px] text-slate-500">15m ago</span>
-                </div>
-                <p class="text-xs text-on-surface-variant leading-relaxed">12 Mails assigned to Team A are awaiting
-                    initial triage.</p>
-            </div>
-        </div>
-        <div class="mt-auto py-8">
-            <div class="glass-card p-4 rounded-xl text-center">
-                <div class="text-xs text-slate-500 mb-2 uppercase tracking-tighter">Completed Today</div>
-                <div class="text-3xl font-headline font-black text-white" id="completed-count">12</div>
-                <div class="text-[10px] text-primary mt-1">+15% from avg</div>
-            </div>
-        </div>
-    </aside>
-    <!-- Main Content Canvas -->
-    <main class="lg:pl-64 xl:pr-80 pt-28 pb-12 px-8 min-h-screen">
-        <div class="max-w-7xl mx-auto space-y-12">
-            <!-- Header Section -->
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <div>
-                    <h1 class="text-4xl font-headline font-black tracking-tight text-on-surface mb-2">
-                        Creation Team Performance Dashboard
-                    </h1>
-                    <p class="text-on-surface-variant max-w-lg">
-                        Operational efficiency and revenue tracking for the global production squad.
-                    </p>
-                </div>
-                <div class="flex flex-wrap items-center gap-3">
-                    <select
-                        class="bg-surface-container-high border-none rounded-full text-xs font-bold text-on-surface-variant px-6 focus:ring-primary transition-all cursor-pointer">
-                        <option>Last 7 Days</option>
-                        <option>Last 30 Days</option>
-                        <option>Year to Date</option>
-                    </select>
-                    <select
-                        class="bg-surface-container-high border-none rounded-full text-xs font-bold text-on-surface-variant px-6 focus:ring-primary transition-all cursor-pointer">
-                        <option>All Status</option>
-                        <option>Completed</option>
-                        <option>Pending</option>
-                        <option>Error</option>
-                    </select>
-                </div>
-            </div>
-            <!-- HERO: Bento Grid Start -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Large 3D Total Commission Card -->
-                <div class="lg:col-span-2 glass-card p-8 rounded-3xl relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-8 opacity-10 transition-opacity group-hover:opacity-20">
-                        <span class="material-symbols-outlined text-9xl text-primary"
-                            data-icon="payments">payments</span>
-                    </div>
-                    <div class="relative z-10 h-full flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                                <span class="text-sm font-bold uppercase tracking-widest text-primary">Revenue
-                                    Overview</span>
-                            </div>
-                            <h2 class="text-sm text-on-surface-variant font-medium mb-1">Total Team Commission</h2>
-                            <div class="flex items-baseline gap-4">
-                                <span class="text-7xl font-headline font-black text-white metric-glow"
-                                    id="stat-total-commission">$0</span>
-                                <span class="text-tertiary font-bold text-lg flex items-center gap-1">
-                                    <span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
-                                    12.5%
-                                </span>
-                            </div>
-                        </div>
-                        <div class="mt-12 flex gap-4">
-                            <div class="flex-1 bg-white/5 rounded-2xl p-4 border border-white/5">
-                                <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Updated</div>
-                                <div class="text-2xl font-headline font-bold text-white" id="stat-commission-updated">$0
-                                </div>
-                            </div>
-                            <div class="flex-1 bg-white/5 rounded-2xl p-4 border border-white/5">
-                                <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Created</div>
-                                <div class="text-2xl font-headline font-bold text-white" id="stat-commission-created">$0
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- QC Status Card -->
-                <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border-l-4 border-error/30">
-                    <div>
-                        <div class="text-sm font-bold uppercase tracking-widest text-error mb-4">Quality Control</div>
-                        <h2 class="text-sm text-on-surface-variant font-medium mb-1">Active QC Errors</h2>
-                        <div class="text-6xl font-headline font-black text-white" id="stat-qc-errors">0</div>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
-                            <div class="bg-error h-full" style="width: 24%"></div>
-                        </div>
-                        <p class="text-xs text-slate-500 italic">Attention required on 3 critical pipelines.</p>
-                        <button
-                            class="w-full py-3 bg-error/10 hover:bg-error/20 text-error rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
-                            Resolve All
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- SECONDARY METRICS -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Communication -->
-                <div class="glass-card p-6 rounded-2xl">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div
-                            class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
-                            <span class="material-symbols-outlined" data-icon="mail">mail</span>
-                        </div>
-                        <div class="text-xs font-bold uppercase tracking-widest text-secondary">Communication</div>
-                    </div>
-                    <div class="text-3xl font-headline font-black text-white" id="stat-mails">0</div>
-                    <div class="text-xs text-slate-500 mt-1">Mails Assigned</div>
-                </div>
-                <!-- Properties -->
-                <div class="glass-card p-6 rounded-2xl">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div
-                            class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
-                            <span class="material-symbols-outlined" data-icon="domain">domain</span>
-                        </div>
-                        <div class="text-xs font-bold uppercase tracking-widest text-tertiary">Inventory</div>
-                    </div>
-                    <div class="flex items-baseline gap-4">
-                        <div>
-                            <div class="text-3xl font-headline font-black text-white" id="stat-properties">0</div>
-                            <div class="text-[10px] text-slate-500 uppercase">Created</div>
-                        </div>
-                        <div class="w-px h-8 bg-white/10"></div>
-                        <div>
-                            <div class="text-3xl font-headline font-black text-white" id="stat-staging">0</div>
-                            <div class="text-[10px] text-slate-500 uppercase">Staging</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Content -->
-                <div class="glass-card p-6 rounded-2xl">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div
-                            class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
-                            <span class="material-symbols-outlined" data-icon="description">description</span>
-                        </div>
-                        <div class="text-xs font-bold uppercase tracking-widest text-primary">Content</div>
-                    </div>
-                    <div class="flex justify-between items-end">
-                        <div>
-                            <div class="text-2xl font-headline font-bold text-white" id="stat-faqs">0</div>
-                            <div class="text-[10px] text-slate-500 uppercase">FAQs</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-headline font-bold text-white" id="stat-videos">0</div>
-                            <div class="text-[10px] text-slate-500 uppercase">Videos</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-headline font-bold text-white" id="stat-api">0</div>
-                            <div class="text-[10px] text-slate-500 uppercase">API Enabled</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pending -->
-                <div class="glass-card p-6 rounded-2xl bg-gradient-to-br from-surface-container-high to-transparent">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div
-                            class="w-10 h-10 rounded-full bg-outline-variant/20 flex items-center justify-center text-outline">
-                            <span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
-                        </div>
-                        <div class="text-xs font-bold uppercase tracking-widest text-outline">Pipeline</div>
-                    </div>
-                    <div class="text-3xl font-headline font-black text-white" id="stat-pending">0</div>
-                    <div class="text-xs text-slate-500 mt-1">Pending Review</div>
-                </div>
-            </div>
-            <!-- ADD MORE METRICS CTA -->
-            <div class="pt-8">
-                <button class="w-full group relative p-[2px] rounded-2xl overflow-hidden">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-orange-600 via-purple-600 to-orange-400 animate-gradient-x">
-                    </div>
-                    <div
-                        class="relative bg-slate-950 rounded-2xl py-6 flex flex-col items-center justify-center transition-all group-hover:bg-slate-900">
-                        <span class="material-symbols-outlined text-primary mb-2 text-3xl"
-                            data-icon="add_circle">add_circle</span>
-                        <span class="text-sm font-bold text-white uppercase tracking-widest">Add More Performance
-                            Metrics</span>
-                        <span class="text-xs text-slate-500 mt-1">Custom data connections available</span>
-                    </div>
-                </button>
-            </div>
         </div>
     </main>
+    <!-- BottomNavBar (Mobile) -->
+    <nav
+        class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#0a0e19]/90 backdrop-blur-2xl rounded-t-[2rem] border-t border-white/5 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] md:hidden">
+        <a class="flex flex-col items-center justify-center bg-[#ff6a3d]/20 text-[#ffb59f] rounded-2xl p-3 shadow-[inset_0_0_12px_rgba(255,106,61,0.3)] scale-110"
+            href="#">
+            <span class="material-symbols-outlined" data-weight="fill">dashboard</span>
+            <span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Dashboard</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[#c4c0ff]/40 p-3 hover:text-[#ffb59f] transition-all"
+            href="#">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Metrics</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[#c4c0ff]/40 p-3 hover:text-[#ffb59f] transition-all"
+            href="#">
+            <span class="material-symbols-outlined">group</span>
+            <span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Team</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[#c4c0ff]/40 p-3 hover:text-[#ffb59f] transition-all"
+            href="#">
+            <span class="material-symbols-outlined">tune</span>
+            <span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Settings</span>
+        </a>
+    </nav>
     <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const toggleKnob = document.getElementById('toggle-knob');
+        const toggleIcon = document.getElementById('toggle-icon');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = html.classList.contains('dark');
+            if (isDark) {
+                html.classList.remove('dark');
+                toggleKnob.style.transform = 'translateX(24px)';
+                toggleKnob.classList.replace('from-primary', 'from-tertiary');
+                toggleKnob.classList.replace('to-primary-container', 'to-tertiary-container');
+                toggleKnob.style.boxShadow = '0 0 15px rgba(88, 215, 235, 0.4)';
+                toggleIcon.textContent = 'light_mode';
+            } else {
+                html.classList.add('dark');
+                toggleKnob.style.transform = 'translateX(0)';
+                toggleKnob.classList.replace('from-tertiary', 'from-primary');
+                toggleKnob.classList.replace('to-tertiary-container', 'to-primary-container');
+                toggleKnob.style.boxShadow = '0 0 15px rgba(255, 106, 61, 0.4)';
+                toggleIcon.textContent = 'dark_mode';
+            }
+        });
+
         const API_URL = "https://script.google.com/a/macros/amberstudent.com/s/AKfycbyOdbPIs-aAElQhS3IQEyG8RM59UoaXHVpV4KIWxsYoc7Jszt1fX5CMLcKPcocpW-3Fpw/exec";
         let teamData = [];
 
-        // LOGIC: DYNAMIC CALCULATIONS
         function updateDashboard() {
             if (teamData.length === 0) return;
-
             const totals = teamData.reduce((acc, curr) => {
-                const totalComm = Number(curr.total_commission) || 0;
-                const commUpdated = Number(curr.commission_updated) || 0;
-                const commCreated = Number(curr.commission_created) || 0;
-                const mails = Number(curr.mails_assigned) || 0;
-                const props = Number(curr.properties_created) || 0;
-                const staging = Number(curr.staging_properties) || 0;
-                const faqs = Number(curr.faqs_updated) || 0;
-                const videos = Number(curr.videos_created) || 0;
-                const api = Number(curr.api_enabled) || 0; // Handle API Enabled
-
-                acc.totalComm += totalComm;
-                acc.commUpdated += commUpdated;
-                acc.commCreated += commCreated;
-                acc.mails += mails;
-                acc.props += props;
-                acc.staging += staging;
-                acc.faqs += faqs;
-                acc.videos += videos;
-                acc.api += api;
-
+                acc.totalComm += (Number(curr.total_commission) || 0);
+                acc.commUpdated += (Number(curr.commission_updated) || 0);
+                acc.commCreated += (Number(curr.commission_created) || 0);
+                acc.mails += (Number(curr.mails_assigned) || 0);
+                acc.props += (Number(curr.properties_created) || 0);
+                acc.staging += (Number(curr.staging_properties) || 0);
+                acc.faqs += (Number(curr.faqs_updated) || 0);
+                acc.videos += (Number(curr.videos_created) || 0);
+                acc.api += (Number(curr.api_enabled) || (Number(curr.api_enabled_props) || 0));
                 if (curr.status === 'Error') acc.qcErrors++;
-                if (curr.status === 'Pending') acc.pending++;
-                if (curr.status === 'Completed') acc.completed++;
                 return acc;
-            }, { totalComm: 0, commUpdated: 0, commCreated: 0, mails: 0, props: 0, staging: 0, faqs: 0, videos: 0, api: 0, qcErrors: 0, pending: 0, completed: 0 });
+            }, { totalComm: 0, commUpdated: 0, commCreated: 0, mails: 0, props: 0, staging: 0, faqs: 0, videos: 0, api: 0, qcErrors: 0 });
 
-            // Count-up helper
             function animateValue(id, value, isCurrency = false) {
                 const el = document.getElementById(id);
                 if (!el) return;
-                let start = 0;
-                const end = value;
-                const duration = 1500;
-                let startTime = null;
-
-                function step(timestamp) {
-                    if (!startTime) startTime = timestamp;
-                    const progress = Math.min((timestamp - startTime) / duration, 1);
-                    const current = Math.floor(progress * (end - start) + start);
-                    el.innerText = isCurrency ? `$${current.toLocaleString()}` : current.toLocaleString();
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                }
-                window.requestAnimationFrame(step);
+                el.innerText = isCurrency ? `$${value.toLocaleString()}` : value.toLocaleString();
             }
 
             animateValue('stat-total-commission', totals.totalComm, true);
-            animateValue('stat-commission-updated', totals.commUpdated, true);
-            animateValue('stat-commission-created', totals.commCreated, true);
+            animateValue('stat-commission-updated', totals.commUpdated);
+            animateValue('stat-commission-created', totals.commCreated);
             animateValue('stat-qc-errors', totals.qcErrors);
             animateValue('stat-mails', totals.mails);
             animateValue('stat-properties', totals.props);
@@ -491,17 +392,13 @@
             animateValue('stat-faqs', totals.faqs);
             animateValue('stat-videos', totals.videos);
             animateValue('stat-api', totals.api);
-            animateValue('stat-pending', totals.pending);
-            animateValue('completed-count', totals.completed);
         }
 
-        // Live Data Ingestion
         async function fetchLiveData() {
             try {
                 const response = await fetch(API_URL);
                 if (!response.ok) throw new Error("Network response was not ok");
                 const data = await response.json();
-
                 if (Array.isArray(data) && data.length > 0) {
                     teamData = data;
                     updateDashboard();
@@ -511,22 +408,9 @@
             }
         }
 
-        // INITIAL LOAD & INTERVAL
         document.addEventListener('DOMContentLoaded', () => {
             fetchLiveData();
             setInterval(fetchLiveData, 30000); // 30s auto-refresh
-        });
-
-        // THEME TOGGLE LOGIC
-        const themeBtn = document.getElementById('themeToggle');
-        themeBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            const icon = themeBtn.querySelector('span');
-            if (document.documentElement.classList.contains('dark')) {
-                icon.innerText = 'dark_mode';
-            } else {
-                icon.innerText = 'light_mode';
-            }
         });
     </script>
 </body>
