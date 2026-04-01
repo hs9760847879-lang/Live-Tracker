@@ -3,7 +3,9 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ['https://commission-team-tracker.vercel.app', 'http://localhost:3000']
+}));
 app.use(express.json());
 // Serve the local dashboard directly
 app.use(express.static(__dirname));
