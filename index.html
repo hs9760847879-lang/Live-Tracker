@@ -313,6 +313,7 @@
                         <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant/60">Commission
                             Updated</p>
                         <p id="stat-commission-updated" class="font-headline text-3xl font-bold text-secondary">0</p>
+                        <p id="weekly-commUpdated" class="text-xs mt-1"></p>
                     </div>
                     <div
                         class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/20">
@@ -325,6 +326,7 @@
                         <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant/60">Commission
                             Created</p>
                         <p id="stat-commission-created" class="font-headline text-3xl font-bold text-primary">0</p>
+                        <p id="weekly-commCreated" class="text-xs mt-1"></p>
                     </div>
                     <div
                         class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
@@ -336,6 +338,7 @@
                     <div class="space-y-1">
                         <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant/60">QC Errors</p>
                         <p id="stat-qc-errors" class="font-headline text-3xl font-bold text-error">0</p>
+                        <p id="weekly-qcErrors" class="text-xs mt-1"></p>
                     </div>
                     <div
                         class="w-12 h-12 rounded-2xl bg-error/10 flex items-center justify-center text-error border border-error/20">
@@ -354,6 +357,7 @@
                             onclick="selectKpi('mails')" id="card-mails">
                             <span class="material-symbols-outlined text-tertiary mb-4 block text-3xl">mail</span>
                             <p id="stat-mails" class="font-headline text-2xl font-bold">0</p>
+                            <p id="weekly-mails" class="text-xs mt-1"></p>
                             <p class="text-on-surface-variant/60 text-sm">Mails Assigned</p>
                         </div>
                     </div>
@@ -368,12 +372,14 @@
                             onclick="selectKpi('props')" id="card-props">
                             <span class="material-symbols-outlined text-primary mb-4 block text-3xl">domain</span>
                             <p id="stat-properties" class="font-headline text-2xl font-bold">0</p>
+                            <p id="weekly-props" class="text-xs mt-1"></p>
                             <p class="text-on-surface-variant/60 text-sm">Properties Created</p>
                         </div>
                         <div class="glass-card rounded-xl p-6 border-l-4 border-l-secondary/40 cursor-pointer kpi-card"
                             onclick="selectKpi('staging')" id="card-staging">
                             <span class="material-symbols-outlined text-secondary mb-4 block text-3xl">chair</span>
                             <p id="stat-staging" class="font-headline text-2xl font-bold">0</p>
+                            <p id="weekly-staging" class="text-xs mt-1"></p>
                             <p class="text-on-surface-variant/60 text-sm">Staging Properties</p>
                         </div>
                     </div>
@@ -389,6 +395,7 @@
                             <span
                                 class="material-symbols-outlined text-on-tertiary-container mb-4 block text-3xl">quiz</span>
                             <p id="stat-faqs" class="font-headline text-2xl font-bold">0</p>
+                            <p id="weekly-faqs" class="text-xs mt-1"></p>
                             <p class="text-on-surface-variant/60 text-sm">FAQs Updated</p>
                         </div>
                         <div class="glass-card rounded-xl p-6 cursor-pointer kpi-card" onclick="selectKpi('videos')"
@@ -396,6 +403,7 @@
                             <span
                                 class="material-symbols-outlined text-primary-container mb-4 block text-3xl">video_library</span>
                             <p id="stat-videos" class="font-headline text-2xl font-bold">0</p>
+                            <p id="weekly-videos" class="text-xs mt-1"></p>
                             <p class="text-on-surface-variant/60 text-sm">Videos Created</p>
                         </div>
                         <div class="glass-card rounded-xl p-6 relative overflow-hidden cursor-pointer kpi-card"
@@ -403,6 +411,7 @@
                             <div class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary/10 rounded-full blur-3xl"></div>
                             <span class="material-symbols-outlined text-tertiary mb-4 block text-3xl">api</span>
                             <p id="stat-api" class="font-headline text-2xl font-bold">0</p>
+                            <p id="weekly-api" class="text-xs mt-1"></p>
                             <p class="text-on-surface-variant/60 text-sm">API Enabled Props</p>
                         </div>
                     </div>
@@ -733,6 +742,35 @@
             }
         }
 
+        function updateWeeklyBadges() {
+            const allData = getCleanData();
+            if (allData.length === 0) return;
+
+            const latestTs = allData[allData.length - 1]._timestamp;
+            const currentWeek = getWeekBounds(new Date(latestTs));
+            const prevWeekEnd = new Date(currentWeek.start - 1);
+            const prevWeek = getWeekBounds(prevWeekEnd);
+
+            const currentWeekData = allData.filter(d => d._timestamp >= currentWeek.start && d._timestamp <= currentWeek.end);
+            const prevWeekData = allData.filter(d => d._timestamp >= prevWeek.start && d._timestamp <= prevWeek.end);
+
+            const curMetrics = calculateMetrics(currentWeekData);
+            const prevMetrics = calculateMetrics(prevWeekData);
+
+            const kpiKeys = ['totalComm', 'commUpdated', 'commCreated', 'qcErrors', 'mails', 'props', 'staging', 'faqs', 'videos', 'api'];
+            kpiKeys.forEach(kpiKey => {
+                const el = document.getElementById('weekly-' + kpiKey);
+                if (!el) return;
+                const curVal = curMetrics[kpiKey] || 0;
+                const prevVal = prevMetrics[kpiKey] || 0;
+                const diff = curVal - prevVal;
+                const pct = prevVal > 0 ? ((diff / prevVal) * 100) : (curVal > 0 ? 100 : 0);
+                const arrow = diff >= 0 ? '↑' : '↓';
+                const color = diff >= 0 ? '#58d7eb' : '#ffb4ab';
+                el.innerHTML = `<span style="color:${color}">${arrow} ${pct >= 0 ? '+' : ''}${pct.toFixed(1)}% this week (${curVal})</span>`;
+            });
+        }
+
         function refreshDashboard() {
             // Dashboard always shows ALL data (no date filter)
             const allData = getCleanData();
@@ -762,6 +800,7 @@
             set('tc-videos', t.videos);
             set('tc-api', t.api);
 
+            updateWeeklyBadges();
             renderHeroChart();
         }
 
@@ -1123,14 +1162,14 @@
         function getWeekBounds(date) {
             const d = new Date(date);
             const day = d.getDay();
-            const diff = d.getDate() - day + (day === 0 ? -6 : 1); // Monday as start
-            const monday = new Date(d);
-            monday.setDate(diff);
-            monday.setHours(0, 0, 0, 0);
-            const sunday = new Date(monday);
-            sunday.setDate(monday.getDate() + 6);
-            sunday.setHours(23, 59, 59, 999);
-            return { start: monday.getTime(), end: sunday.getTime() };
+            const offset = (day - 3 + 7) % 7; // Wednesday as start (getDay: 0=Sun, 3=Wed)
+            const wednesday = new Date(d);
+            wednesday.setDate(d.getDate() - offset);
+            wednesday.setHours(0, 0, 0, 0);
+            const tuesday = new Date(wednesday);
+            tuesday.setDate(wednesday.getDate() + 6);
+            tuesday.setHours(23, 59, 59, 999);
+            return { start: wednesday.getTime(), end: tuesday.getTime() };
         }
 
         function renderWeeklyAnalysis() {
