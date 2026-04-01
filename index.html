@@ -204,6 +204,20 @@
         .reset-btn:hover {
             text-decoration: underline;
         }
+
+        #weekly-analysis-content table {
+            background: rgba(49, 52, 65, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        #weekly-analysis-content tbody tr {
+            transition: background 0.2s;
+        }
+
+        #weekly-analysis-content tbody tr:hover {
+            background: rgba(255, 181, 159, 0.05);
+        }
     </style>
 </head>
 
@@ -332,7 +346,7 @@
             <div class="space-y-12">
                 <div class="space-y-6">
                     <div class="flex items-center gap-4">
-                        <h2 class="font-headline text-xl font-bold text-on-surface">Communication</h2>
+                        <h2 class="font-headline text-xl font-bold text-on-surface">Freshdesk in Tracker</h2>
                         <div class="h-[1px] flex-grow bg-white/10"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -346,7 +360,7 @@
                 </div>
                 <div class="space-y-6">
                     <div class="flex items-center gap-4">
-                        <h2 class="font-headline text-xl font-bold text-on-surface">Properties</h2>
+                        <h2 class="font-headline text-xl font-bold text-on-surface">Onboarding</h2>
                         <div class="h-[1px] flex-grow bg-white/10"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -366,7 +380,7 @@
                 </div>
                 <div class="space-y-6">
                     <div class="flex items-center gap-4">
-                        <h2 class="font-headline text-xl font-bold text-on-surface">Content</h2>
+                        <h2 class="font-headline text-xl font-bold text-on-surface">Supply Pipeline</h2>
                         <div class="h-[1px] flex-grow bg-white/10"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -391,6 +405,33 @@
                             <p id="stat-api" class="font-headline text-2xl font-bold">0</p>
                             <p class="text-on-surface-variant/60 text-sm">API Enabled Props</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-6" id="weekly-analysis-section">
+                <div class="flex items-center gap-4">
+                    <h2 class="font-headline text-xl font-bold text-on-surface">Weekly Analysis</h2>
+                    <div class="h-[1px] flex-grow bg-white/10"></div>
+                    <button onclick="toggleWeeklyAnalysis()" id="weekly-toggle-btn"
+                        class="px-4 py-2 rounded-lg border border-primary/30 text-primary text-sm font-medium hover:bg-primary/10 transition">
+                        <span class="material-symbols-outlined text-sm align-middle">analytics</span> Show Analysis
+                    </button>
+                </div>
+                <div id="weekly-analysis-content" class="hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-white/10 text-on-surface-variant/50 text-xs uppercase tracking-widest">
+                                    <th class="text-left py-3 px-4">KPI</th>
+                                    <th class="text-right py-3 px-4">Current Week</th>
+                                    <th class="text-right py-3 px-4">Previous Week</th>
+                                    <th class="text-right py-3 px-4">Change</th>
+                                    <th class="text-right py-3 px-4">Max Work Date</th>
+                                    <th class="text-right py-3 px-4">Min Work Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="weekly-analysis-body"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -1064,6 +1105,95 @@
             document.getElementById('detail-view').style.display = 'none';
             document.getElementById('dashboard-view').style.display = 'block';
             refreshDashboard();
+        }
+
+        function toggleWeeklyAnalysis() {
+            const content = document.getElementById('weekly-analysis-content');
+            const btn = document.getElementById('weekly-toggle-btn');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                btn.innerHTML = '<span class="material-symbols-outlined text-sm align-middle">close</span> Hide Analysis';
+                renderWeeklyAnalysis();
+            } else {
+                content.classList.add('hidden');
+                btn.innerHTML = '<span class="material-symbols-outlined text-sm align-middle">analytics</span> Show Analysis';
+            }
+        }
+
+        function getWeekBounds(date) {
+            const d = new Date(date);
+            const day = d.getDay();
+            const diff = d.getDate() - day + (day === 0 ? -6 : 1); // Monday as start
+            const monday = new Date(d);
+            monday.setDate(diff);
+            monday.setHours(0, 0, 0, 0);
+            const sunday = new Date(monday);
+            sunday.setDate(monday.getDate() + 6);
+            sunday.setHours(23, 59, 59, 999);
+            return { start: monday.getTime(), end: sunday.getTime() };
+        }
+
+        function renderWeeklyAnalysis() {
+            const allData = getCleanData();
+            if (allData.length === 0) {
+                document.getElementById('weekly-analysis-body').innerHTML = '<tr><td colspan="6" class="text-center py-6 text-on-surface-variant/40">No data available</td></tr>';
+                return;
+            }
+
+            const latestTs = allData[allData.length - 1]._timestamp;
+            const currentWeek = getWeekBounds(new Date(latestTs));
+            const prevWeekEnd = new Date(currentWeek.start - 1);
+            const prevWeek = getWeekBounds(prevWeekEnd);
+
+            const kpiKeys = ['totalComm', 'commUpdated', 'commCreated', 'mails', 'props', 'staging', 'faqs', 'videos', 'api'];
+            const currentWeekData = allData.filter(d => d._timestamp >= currentWeek.start && d._timestamp <= currentWeek.end);
+            const prevWeekData = allData.filter(d => d._timestamp >= prevWeek.start && d._timestamp <= prevWeek.end);
+
+            const currentMetrics = calculateMetrics(currentWeekData);
+            const prevMetrics = calculateMetrics(prevWeekData);
+
+            const rows = kpiKeys.map(kpiKey => {
+                const conf = kpiDetails[kpiKey];
+                const curVal = currentMetrics[kpiKey] || 0;
+                const prevVal = prevMetrics[kpiKey] || 0;
+                const diff = curVal - prevVal;
+                const changePct = prevVal > 0 ? ((diff / prevVal) * 100) : (curVal > 0 ? 100 : 0);
+
+                // Find max and min work dates for this KPI in current week
+                const dailyData = groupDataByDate(currentWeekData, kpiKey);
+                let maxDate = '-', minDate = '-';
+                if (dailyData.length > 0) {
+                    let maxVal = -Infinity, minVal = Infinity;
+                    dailyData.forEach(d => {
+                        if (d.value > maxVal) { maxVal = d.value; maxDate = d.date; }
+                        if (d.value < minVal) { minVal = d.value; minDate = d.date; }
+                    });
+                    const fmt = (dateStr) => {
+                        if (dateStr === '-') return '-';
+                        const dd = new Date(dateStr);
+                        return dd.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                    };
+                    maxDate = fmt(maxDate) + ` (${maxVal})`;
+                    minDate = fmt(minDate) + ` (${minVal})`;
+                }
+
+                const changeColor = diff >= 0 ? 'text-tertiary' : 'text-error';
+                const arrow = diff >= 0 ? '↑' : '↓';
+
+                return `<tr class="border-b border-white/5 hover:bg-white/5 transition cursor-pointer" onclick="selectKpi('${kpiKey}')">
+                    <td class="py-3 px-4 font-medium flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg" style="color:${conf.color}">${conf.icon}</span>
+                        ${conf.name}
+                    </td>
+                    <td class="py-3 px-4 text-right font-bold font-headline">${curVal.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-right text-on-surface-variant/60">${prevVal.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-right ${changeColor} font-semibold">${arrow} ${changePct >= 0 ? '+' : ''}${changePct.toFixed(1)}% (${diff >= 0 ? '+' : ''}${diff})</td>
+                    <td class="py-3 px-4 text-right text-sm text-on-surface-variant/60">${maxDate}</td>
+                    <td class="py-3 px-4 text-right text-sm text-on-surface-variant/60">${minDate}</td>
+                </tr>`;
+            }).join('');
+
+            document.getElementById('weekly-analysis-body').innerHTML = rows;
         }
 
         async function init() {
